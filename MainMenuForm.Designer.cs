@@ -6,7 +6,7 @@
         private System.Windows.Forms.Button btnReportIssues;
         private System.Windows.Forms.Button btnLocalEvents;
         private System.Windows.Forms.Button btnServiceStatus;
-
+        private System.Windows.Forms.Button btnViewReports;
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -18,6 +18,7 @@
 
         private void InitializeComponent()
         {
+            this.btnViewReports = new System.Windows.Forms.Button();
             this.btnReportIssues = new System.Windows.Forms.Button();
             this.btnLocalEvents = new System.Windows.Forms.Button();
             this.btnServiceStatus = new System.Windows.Forms.Button();
@@ -62,6 +63,19 @@
             this.Text = "Municipality Services";
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.ResumeLayout(false);
+            //
+            // btnViewReports
+            //
+            this.btnViewReports = new System.Windows.Forms.Button();
+            this.btnViewReports.Location = new System.Drawing.Point(100, 260);
+            this.btnViewReports.Name = "btnViewReports";
+            this.btnViewReports.Size = new System.Drawing.Size(200, 50);
+            this.btnViewReports.TabIndex = 3;
+            this.btnViewReports.Text = "View Reports";
+            this.btnViewReports.UseVisualStyleBackColor = true;
+            this.btnViewReports.Click += new System.EventHandler(this.btnViewReports_Click);
+            this.Controls.Add(this.btnViewReports);
+
         }
     }
 }

@@ -23,6 +23,12 @@ namespace MunicipalityApp
             reportForm.Show();
             this.Hide();
         }
+        private void btnViewReports_Click(object sender, EventArgs e)
+        {
+            ViewReportsForm viewReports = new ViewReportsForm();
+            viewReports.Show();
+            this.Hide();
+        }
     }
 }
 

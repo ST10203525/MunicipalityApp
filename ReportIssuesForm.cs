@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MunicipalityApp.Models;
+using MunicipalityApp.Data;
 
 namespace MunicipalityApp
 {
     public partial class ReportIssuesForm : Form
     {
-        // Data structure to store issues
-        public static List<Issue> reportedIssues = new List<Issue>();
-
         string attachedFile = "";
 
         public ReportIssuesForm()
@@ -25,7 +21,7 @@ namespace MunicipalityApp
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 attachedFile = fileDialog.FileName;
-                lblAttachmentStatus.Text = "File Attached: " + Path.GetFileName(attachedFile);
+                lblAttachmentStatus.Text = "File Attached: " + System.IO.Path.GetFileName(attachedFile);
             }
         }
 
@@ -45,7 +41,7 @@ namespace MunicipalityApp
                 Attachment = attachedFile
             };
 
-            reportedIssues.Add(newIssue);
+            IssueRepository.AddIssue(newIssue); // Save issue
 
             progressBar1.Value = 100;
             lblStatus.Text = "Report Submitted Successfully!";
@@ -67,14 +63,5 @@ namespace MunicipalityApp
             mainMenu.Show();
             this.Close();
         }
-    }
-
-    // Data Structure for Issues
-    public class Issue
-    {
-        public string Location { get; set; }
-        public string Category { get; set; }
-        public string Description { get; set; }
-        public string Attachment { get; set; }
     }
 }
