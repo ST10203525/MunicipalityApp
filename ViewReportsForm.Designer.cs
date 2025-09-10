@@ -53,6 +53,11 @@
             this.Load += new System.EventHandler(this.ViewReportsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).EndInit();
             this.ResumeLayout(false);
+
+            dgvReports.Dock = DockStyle.Fill; // fills the form
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+
         }
     }
 }

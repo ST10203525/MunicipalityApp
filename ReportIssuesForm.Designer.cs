@@ -171,6 +171,18 @@
             this.Text = "Report an Issue";
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            txtLocation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            cmbCategory.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            rtbDescription.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnAttach.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            lblAttachmentStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnSubmit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            progressBar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+
+            
         }
     }
 }

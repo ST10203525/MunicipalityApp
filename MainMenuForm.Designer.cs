@@ -76,6 +76,26 @@
             this.btnViewReports.Click += new System.EventHandler(this.btnViewReports_Click);
             this.Controls.Add(this.btnViewReports);
 
+            btnReportIssues.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnLocalEvents.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnServiceStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnViewReports.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+
+            TableLayoutPanel tableLayout = new TableLayoutPanel();
+            tableLayout.Dock = DockStyle.Fill;
+            tableLayout.RowCount = 4;
+            tableLayout.ColumnCount = 1;
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.Controls.Add(btnReportIssues, 0, 0);
+            tableLayout.Controls.Add(btnLocalEvents, 0, 1);
+            tableLayout.Controls.Add(btnServiceStatus, 0, 2);
+            tableLayout.Controls.Add(btnViewReports, 0, 3);
+            this.Controls.Add(tableLayout);
+
+
         }
     }
 }
