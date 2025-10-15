@@ -13,7 +13,7 @@ namespace MunicipalityApp
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
             // Disable other options
-            btnLocalEvents.Enabled = false;
+           
             btnServiceStatus.Enabled = false;
         }
 
@@ -21,6 +21,13 @@ namespace MunicipalityApp
         {
             ReportIssuesForm reportForm = new ReportIssuesForm();
             reportForm.Show();
+            this.Hide();
+        }
+        private void btnLocalEvents_Click(object sender, EventArgs e)
+        {
+            // Open the Local Events form
+            LocalEventsForm localEventsForm = new LocalEventsForm();
+            localEventsForm.Show();
             this.Hide();
         }
         private void btnViewReports_Click(object sender, EventArgs e)
@@ -31,4 +38,3 @@ namespace MunicipalityApp
         }
     }
 }
-

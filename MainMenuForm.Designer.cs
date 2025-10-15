@@ -3,10 +3,6 @@
     partial class MainMenuForm
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Button btnReportIssues;
-        private System.Windows.Forms.Button btnLocalEvents;
-        private System.Windows.Forms.Button btnServiceStatus;
-        private System.Windows.Forms.Button btnViewReports;
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -18,84 +14,106 @@
 
         private void InitializeComponent()
         {
-            this.btnViewReports = new System.Windows.Forms.Button();
-            this.btnReportIssues = new System.Windows.Forms.Button();
-            this.btnLocalEvents = new System.Windows.Forms.Button();
-            this.btnServiceStatus = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // btnReportIssues
-            // 
-            this.btnReportIssues.Location = new System.Drawing.Point(100, 50);
-            this.btnReportIssues.Name = "btnReportIssues";
-            this.btnReportIssues.Size = new System.Drawing.Size(200, 50);
-            this.btnReportIssues.TabIndex = 0;
-            this.btnReportIssues.Text = "Report Issues";
-            this.btnReportIssues.UseVisualStyleBackColor = true;
-            this.btnReportIssues.Click += new System.EventHandler(this.btnReportIssues_Click);
+            btnLocalEvents = new Button();
+            btnViewReports = new Button();
+            btnServiceStatus = new Button();
+            btnReportIssues = new Button();
+            tableLayout = new TableLayoutPanel();
+            tableLayout.SuspendLayout();
+            SuspendLayout();
             // 
             // btnLocalEvents
             // 
-            this.btnLocalEvents.Location = new System.Drawing.Point(100, 120);
-            this.btnLocalEvents.Name = "btnLocalEvents";
-            this.btnLocalEvents.Size = new System.Drawing.Size(200, 50);
-            this.btnLocalEvents.TabIndex = 1;
-            this.btnLocalEvents.Text = "Local Events & Announcements";
-            this.btnLocalEvents.UseVisualStyleBackColor = true;
+            btnLocalEvents.Anchor = AnchorStyles.None;
+            btnLocalEvents.AutoSize = true;
+            btnLocalEvents.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLocalEvents.ForeColor = Color.BlueViolet;
+            btnLocalEvents.Location = new Point(385, 236);
+            btnLocalEvents.Name = "btnLocalEvents";
+            btnLocalEvents.Size = new Size(214, 30);
+            btnLocalEvents.TabIndex = 1;
+            btnLocalEvents.Text = "Local Events & Announcements";
+            btnLocalEvents.UseVisualStyleBackColor = true;
+            btnLocalEvents.Click += btnLocalEvents_Click;
+            // 
+            // btnViewReports
+            // 
+            btnViewReports.Anchor = AnchorStyles.None;
+            btnViewReports.AutoSize = true;
+            btnViewReports.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnViewReports.BackColor = Color.White;
+            btnViewReports.Location = new Point(439, 561);
+            btnViewReports.Name = "btnViewReports";
+            btnViewReports.Size = new Size(106, 30);
+            btnViewReports.TabIndex = 3;
+            btnViewReports.Text = "View Reports";
+            btnViewReports.UseVisualStyleBackColor = false;
+            btnViewReports.Click += btnViewReports_Click;
             // 
             // btnServiceStatus
             // 
-            this.btnServiceStatus.Location = new System.Drawing.Point(100, 190);
-            this.btnServiceStatus.Name = "btnServiceStatus";
-            this.btnServiceStatus.Size = new System.Drawing.Size(200, 50);
-            this.btnServiceStatus.TabIndex = 2;
-            this.btnServiceStatus.Text = "Service Request Status";
-            this.btnServiceStatus.UseVisualStyleBackColor = true;
+            btnServiceStatus.Anchor = AnchorStyles.None;
+            btnServiceStatus.AutoSize = true;
+            btnServiceStatus.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnServiceStatus.Location = new Point(408, 395);
+            btnServiceStatus.Name = "btnServiceStatus";
+            btnServiceStatus.Size = new Size(167, 30);
+            btnServiceStatus.TabIndex = 2;
+            btnServiceStatus.Text = "Service Request Status";
+            btnServiceStatus.UseVisualStyleBackColor = true;
+            // 
+            // btnReportIssues
+            // 
+            btnReportIssues.Anchor = AnchorStyles.None;
+            btnReportIssues.AutoSize = true;
+            btnReportIssues.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReportIssues.Location = new Point(439, 72);
+            btnReportIssues.Name = "btnReportIssues";
+            btnReportIssues.Size = new Size(106, 30);
+            btnReportIssues.TabIndex = 0;
+            btnReportIssues.Text = "Report Issues";
+            btnReportIssues.UseVisualStyleBackColor = true;
+            btnReportIssues.Click += btnReportIssues_Click;
+            // 
+            // tableLayout
+            // 
+            tableLayout.ColumnCount = 1;
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayout.Controls.Add(btnReportIssues, 0, 0);
+            tableLayout.Controls.Add(btnServiceStatus, 0, 2);
+            tableLayout.Controls.Add(btnViewReports, 0, 3);
+            tableLayout.Controls.Add(btnLocalEvents, 0, 1);
+            tableLayout.Dock = DockStyle.Fill;
+            tableLayout.Location = new Point(0, 0);
+            tableLayout.Name = "tableLayout";
+            tableLayout.RowCount = 4;
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 26.4036427F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 23.36874F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.Size = new Size(984, 659);
+            tableLayout.TabIndex = 4;
             // 
             // MainMenuForm
             // 
-            this.ClientSize = new System.Drawing.Size(400, 300);
-            this.Controls.Add(this.btnServiceStatus);
-            this.Controls.Add(this.btnLocalEvents);
-            this.Controls.Add(this.btnReportIssues);
-            this.Name = "MainMenuForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Municipality Services";
-            this.Load += new System.EventHandler(this.MainMenuForm_Load);
-            this.ResumeLayout(false);
-            //
-            // btnViewReports
-            //
-            this.btnViewReports = new System.Windows.Forms.Button();
-            this.btnViewReports.Location = new System.Drawing.Point(100, 260);
-            this.btnViewReports.Name = "btnViewReports";
-            this.btnViewReports.Size = new System.Drawing.Size(200, 50);
-            this.btnViewReports.TabIndex = 3;
-            this.btnViewReports.Text = "View Reports";
-            this.btnViewReports.UseVisualStyleBackColor = true;
-            this.btnViewReports.Click += new System.EventHandler(this.btnViewReports_Click);
-            this.Controls.Add(this.btnViewReports);
-
-            btnReportIssues.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnLocalEvents.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnServiceStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnViewReports.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-
-            TableLayoutPanel tableLayout = new TableLayoutPanel();
-            tableLayout.Dock = DockStyle.Fill;
-            tableLayout.RowCount = 4;
-            tableLayout.ColumnCount = 1;
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.Controls.Add(btnReportIssues, 0, 0);
-            tableLayout.Controls.Add(btnLocalEvents, 0, 1);
-            tableLayout.Controls.Add(btnServiceStatus, 0, 2);
-            tableLayout.Controls.Add(btnViewReports, 0, 3);
-            this.Controls.Add(tableLayout);
+            BackColor = SystemColors.ActiveBorder;
+            ClientSize = new Size(984, 659);
+            Controls.Add(tableLayout);
+            ForeColor = Color.Blue;
+            Name = "MainMenuForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Municipality Services";
+            Load += MainMenuForm_Load;
+            tableLayout.ResumeLayout(false);
+            tableLayout.PerformLayout();
+            ResumeLayout(false);
 
 
         }
+        private Button btnLocalEvents;
+        private Button btnViewReports;
+        private Button btnServiceStatus;
+        private Button btnReportIssues;
+        private TableLayoutPanel tableLayout;
     }
 }
