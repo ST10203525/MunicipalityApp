@@ -11,116 +11,135 @@ namespace MunicipalityApp
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
-            btnLocalEvents = new Button();
-            btnViewReports = new Button();
-            btnServiceStatus = new Button();
+            lblTitle = new Label();
+            pnlHeader = new Panel();
+            pnlMain = new Panel();
             btnReportIssues = new Button();
-            tableLayout = new TableLayoutPanel();
-            tableLayout.SuspendLayout();
+            btnLocalEvents = new Button();
+            btnServiceStatus = new Button();
+            btnViewReports = new Button();
+
+            pnlHeader.SuspendLayout();
+            pnlMain.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnLocalEvents
-            // 
-            btnLocalEvents.Anchor = AnchorStyles.None;
-            btnLocalEvents.AutoSize = true;
-            btnLocalEvents.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnLocalEvents.ForeColor = Color.BlueViolet;
-            btnLocalEvents.Location = new Point(385, 236);
-            btnLocalEvents.Name = "btnLocalEvents";
-            btnLocalEvents.Size = new Size(214, 30);
-            btnLocalEvents.TabIndex = 1;
-            btnLocalEvents.Text = "Local Events & Announcements";
-            btnLocalEvents.UseVisualStyleBackColor = true;
-            btnLocalEvents.Click += btnLocalEvents_Click;
-            // 
-            // btnViewReports
-            // 
-            btnViewReports.Anchor = AnchorStyles.None;
-            btnViewReports.AutoSize = true;
-            btnViewReports.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnViewReports.BackColor = Color.White;
-            btnViewReports.Location = new Point(439, 561);
-            btnViewReports.Name = "btnViewReports";
-            btnViewReports.Size = new Size(106, 30);
-            btnViewReports.TabIndex = 3;
-            btnViewReports.Text = "View Reports";
-            btnViewReports.UseVisualStyleBackColor = false;
-            btnViewReports.Click += btnViewReports_Click;
-            // 
-            // btnServiceStatus
-            // 
-            btnServiceStatus.Anchor = AnchorStyles.None;
-            btnServiceStatus.AutoSize = true;
-            btnServiceStatus.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnServiceStatus.Location = new Point(408, 395);
-            btnServiceStatus.Name = "btnServiceStatus";
-            btnServiceStatus.Size = new Size(167, 30);
-            btnServiceStatus.TabIndex = 2;
-            btnServiceStatus.Text = "Service Request Status";
-            btnServiceStatus.UseVisualStyleBackColor = true;
-            btnServiceStatus.Click += btnServiceStatus_Click; // ✅ Added
-            // 
-            // btnReportIssues
-            // 
-            btnReportIssues.Anchor = AnchorStyles.None;
-            btnReportIssues.AutoSize = true;
-            btnReportIssues.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnReportIssues.Location = new Point(439, 72);
-            btnReportIssues.Name = "btnReportIssues";
-            btnReportIssues.Size = new Size(106, 30);
-            btnReportIssues.TabIndex = 0;
-            btnReportIssues.Text = "Report Issues";
-            btnReportIssues.UseVisualStyleBackColor = true;
+
+            // ===== Header Panel =====
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.BackColor = Color.SteelBlue;
+            pnlHeader.Height = 80;
+            pnlHeader.Controls.Add(lblTitle);
+
+            lblTitle.Dock = DockStyle.Fill;
+            lblTitle.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitle.Text = "🏛️ Municipality Services Dashboard";
+
+            // ===== Main Panel =====
+            pnlMain.Dock = DockStyle.Fill;
+            pnlMain.BackColor = Color.WhiteSmoke;
+            pnlMain.Padding = new Padding(40);
+            pnlMain.Controls.AddRange(new Control[]
+            {
+                btnReportIssues, btnLocalEvents, btnServiceStatus, btnViewReports
+            });
+
+            // ===== Buttons (shared style) =====
+            Font buttonFont = new Font("Segoe UI", 12F, FontStyle.Bold);
+            Size buttonSize = new Size(280, 80);
+
+            // Report Issues
+            btnReportIssues.Text = "🛠️ Report Community Issues";
+            btnReportIssues.Font = buttonFont;
+            btnReportIssues.Size = buttonSize;
+            btnReportIssues.BackColor = Color.FromArgb(0, 123, 255);
+            btnReportIssues.ForeColor = Color.White;
+            btnReportIssues.FlatStyle = FlatStyle.Flat;
+            btnReportIssues.FlatAppearance.BorderSize = 0;
+            btnReportIssues.Location = new Point(350, 100);
+            btnReportIssues.Cursor = Cursors.Hand;
             btnReportIssues.Click += btnReportIssues_Click;
-            // 
-            // tableLayout
-            // 
-            tableLayout.ColumnCount = 1;
-            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayout.Controls.Add(btnReportIssues, 0, 0);
-            tableLayout.Controls.Add(btnLocalEvents, 0, 1);
-            tableLayout.Controls.Add(btnServiceStatus, 0, 2);
-            tableLayout.Controls.Add(btnViewReports, 0, 3);
-            tableLayout.Dock = DockStyle.Fill;
-            tableLayout.Location = new Point(0, 0);
-            tableLayout.Name = "tableLayout";
-            tableLayout.RowCount = 4;
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayout.Size = new Size(984, 659);
-            tableLayout.TabIndex = 4;
-            // 
-            // MainMenuForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            btnReportIssues.MouseEnter += (s, e) => btnReportIssues.BackColor = Color.FromArgb(0, 90, 190);
+            btnReportIssues.MouseLeave += (s, e) => btnReportIssues.BackColor = Color.FromArgb(0, 123, 255);
+
+            // Local Events
+            btnLocalEvents.Text = "🎉 Local Events & Announcements";
+            btnLocalEvents.Font = buttonFont;
+            btnLocalEvents.Size = buttonSize;
+            btnLocalEvents.BackColor = Color.MediumSeaGreen;
+            btnLocalEvents.ForeColor = Color.White;
+            btnLocalEvents.FlatStyle = FlatStyle.Flat;
+            btnLocalEvents.FlatAppearance.BorderSize = 0;
+            btnLocalEvents.Location = new Point(350, 220);
+            btnLocalEvents.Cursor = Cursors.Hand;
+            btnLocalEvents.Click += btnLocalEvents_Click;
+            btnLocalEvents.MouseEnter += (s, e) => btnLocalEvents.BackColor = Color.SeaGreen;
+            btnLocalEvents.MouseLeave += (s, e) => btnLocalEvents.BackColor = Color.MediumSeaGreen;
+
+            // Service Request Status
+            btnServiceStatus.Text = "📋 Service Request Status";
+            btnServiceStatus.Font = buttonFont;
+            btnServiceStatus.Size = buttonSize;
+            btnServiceStatus.BackColor = Color.Orange;
+            btnServiceStatus.ForeColor = Color.White;
+            btnServiceStatus.FlatStyle = FlatStyle.Flat;
+            btnServiceStatus.FlatAppearance.BorderSize = 0;
+            btnServiceStatus.Location = new Point(350, 340);
+            btnServiceStatus.Cursor = Cursors.Hand;
+            btnServiceStatus.Click += btnServiceStatus_Click;
+            btnServiceStatus.MouseEnter += (s, e) => btnServiceStatus.BackColor = Color.DarkOrange;
+            btnServiceStatus.MouseLeave += (s, e) => btnServiceStatus.BackColor = Color.Orange;
+
+            // View Reports
+            btnViewReports.Text = "📊 View Submitted Reports";
+            btnViewReports.Font = buttonFont;
+            btnViewReports.Size = buttonSize;
+            btnViewReports.BackColor = Color.MediumSlateBlue;
+            btnViewReports.ForeColor = Color.White;
+            btnViewReports.FlatStyle = FlatStyle.Flat;
+            btnViewReports.FlatAppearance.BorderSize = 0;
+            btnViewReports.Location = new Point(350, 460);
+            btnViewReports.Cursor = Cursors.Hand;
+            btnViewReports.Click += btnViewReports_Click;
+            btnViewReports.MouseEnter += (s, e) => btnViewReports.BackColor = Color.SlateBlue;
+            btnViewReports.MouseLeave += (s, e) => btnViewReports.BackColor = Color.MediumSlateBlue;
+
+            // ===== Form Settings =====
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveBorder;
-            ClientSize = new Size(984, 659);
-            Controls.Add(tableLayout);
-            ForeColor = Color.Blue;
+            BackColor = Color.White;
+            ClientSize = new Size(1000, 650);
+            Controls.Add(pnlMain);
+            Controls.Add(pnlHeader);
+            Font = new Font("Segoe UI", 10F);
+            ForeColor = Color.Black;
+            StartPosition = FormStartPosition.CenterScreen;
             Name = "MainMenuForm";
-            StartPosition = FormStartPosition.CenterParent;
             Text = "Municipality Services";
+
             Load += MainMenuForm_Load;
-            tableLayout.ResumeLayout(false);
-            tableLayout.PerformLayout();
+
+            pnlHeader.ResumeLayout(false);
+            pnlMain.ResumeLayout(false);
             ResumeLayout(false);
         }
 
-        private Button btnLocalEvents;
-        private Button btnViewReports;
-        private Button btnServiceStatus;
-        private Button btnReportIssues;
-        private TableLayoutPanel tableLayout;
+        #endregion
+
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Button btnReportIssues;
+        private System.Windows.Forms.Button btnLocalEvents;
+        private System.Windows.Forms.Button btnServiceStatus;
+        private System.Windows.Forms.Button btnViewReports;
     }
 }

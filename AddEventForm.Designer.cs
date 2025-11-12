@@ -1,4 +1,8 @@
-﻿namespace MunicipalityApp
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MunicipalityApp
 {
     partial class AddEventForm
     {
@@ -15,6 +19,9 @@
 
         private void InitializeComponent()
         {
+            pnlHeader = new Panel();
+            lblHeader = new Label();
+            pnlContent = new Panel();
             lblTitle = new Label();
             txtTitle = new TextBox();
             lblCategory = new Label();
@@ -25,146 +32,142 @@
             txtDescription = new TextBox();
             btnAdd = new Button();
             btnCancel = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+
+            pnlHeader.SuspendLayout();
+            pnlContent.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            lblTitle.Anchor = AnchorStyles.None;
+
+            // ===== HEADER PANEL =====
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 80;
+            pnlHeader.BackColor = Color.SteelBlue;
+            pnlHeader.Controls.Add(lblHeader);
+
+            lblHeader.Dock = DockStyle.Fill;
+            lblHeader.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeader.ForeColor = Color.White;
+            lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+            lblHeader.Text = "➕ Add New Community Event";
+
+            // ===== CONTENT PANEL =====
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.BackColor = Color.WhiteSmoke;
+            pnlContent.Padding = new Padding(40);
+            pnlContent.Controls.AddRange(new Control[]
+            {
+                lblTitle, txtTitle,
+                lblCategory, cboCategory,
+                lblDate, dtpDate,
+                lblDescription, txtDescription,
+                btnAdd, btnCancel
+            });
+
+            // ===== LABELS AND INPUTS =====
+            Font labelFont = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            Font inputFont = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+
+            // Title
+            lblTitle.Text = "Event Title:";
+            lblTitle.Font = labelFont;
+            lblTitle.Location = new Point(180, 80);
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(376, 219);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(41, 20);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Title:";
-            // 
-            // txtTitle
-            // 
-            txtTitle.Anchor = AnchorStyles.None;
-            txtTitle.Location = new Point(456, 216);
-            txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(250, 27);
-            txtTitle.TabIndex = 1;
-            // 
-            // lblCategory
-            // 
-            lblCategory.Anchor = AnchorStyles.None;
-            lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(376, 259);
-            lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(72, 20);
-            lblCategory.TabIndex = 2;
+
+            txtTitle.Font = inputFont;
+            txtTitle.Location = new Point(340, 78);
+            txtTitle.Size = new Size(380, 27);
+
+            // Category
             lblCategory.Text = "Category:";
-            // 
-            // cboCategory
-            // 
-            cboCategory.Anchor = AnchorStyles.None;
-            cboCategory.Location = new Point(456, 256);
-            cboCategory.Name = "cboCategory";
+            lblCategory.Font = labelFont;
+            lblCategory.Location = new Point(180, 130);
+            lblCategory.AutoSize = true;
+
+            cboCategory.Font = inputFont;
+            cboCategory.Location = new Point(340, 128);
             cboCategory.Size = new Size(250, 28);
-            cboCategory.TabIndex = 3;
-            // 
-            // lblDate
-            // 
-            lblDate.Anchor = AnchorStyles.None;
+            cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Date
+            lblDate.Text = "Event Date:";
+            lblDate.Font = labelFont;
+            lblDate.Location = new Point(180, 180);
             lblDate.AutoSize = true;
-            lblDate.Location = new Point(376, 299);
-            lblDate.Name = "lblDate";
-            lblDate.Size = new Size(44, 20);
-            lblDate.TabIndex = 4;
-            lblDate.Text = "Date:";
-            // 
-            // dtpDate
-            // 
-            dtpDate.Anchor = AnchorStyles.None;
+
+            dtpDate.Font = inputFont;
             dtpDate.Format = DateTimePickerFormat.Short;
-            dtpDate.Location = new Point(460, 292);
-            dtpDate.Name = "dtpDate";
+            dtpDate.Location = new Point(340, 178);
             dtpDate.Size = new Size(150, 27);
-            dtpDate.TabIndex = 5;
-            // 
-            // lblDescription
-            // 
-            lblDescription.Anchor = AnchorStyles.None;
-            lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(376, 339);
-            lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(88, 20);
-            lblDescription.TabIndex = 6;
+
+            // Description
             lblDescription.Text = "Description:";
-            // 
-            // txtDescription
-            // 
-            txtDescription.Anchor = AnchorStyles.None;
-            txtDescription.Location = new Point(456, 339);
+            lblDescription.Font = labelFont;
+            lblDescription.Location = new Point(180, 230);
+            lblDescription.AutoSize = true;
+
+            txtDescription.Font = inputFont;
+            txtDescription.Location = new Point(340, 230);
             txtDescription.Multiline = true;
-            txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(250, 80);
-            txtDescription.TabIndex = 7;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Anchor = AnchorStyles.None;
-            btnAdd.Location = new Point(456, 429);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(78, 33);
-            btnAdd.TabIndex = 8;
-            btnAdd.Text = "Add";
+            txtDescription.Size = new Size(380, 130);
+            txtDescription.ScrollBars = ScrollBars.Vertical;
+            txtDescription.BorderStyle = BorderStyle.FixedSingle;
+
+            // ===== BUTTONS =====
+            btnAdd.Text = "✅ Add Event";
+            btnAdd.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnAdd.BackColor = Color.MediumSeaGreen;
+            btnAdd.ForeColor = Color.White;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.Size = new Size(140, 45);
+            btnAdd.Location = new Point(340, 390);
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.Click += btnAdd_Click;
-            // 
-            // btnCancel
-            // 
-            btnCancel.Anchor = AnchorStyles.None;
-            btnCancel.Location = new Point(556, 429);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(84, 33);
-            btnCancel.TabIndex = 9;
-            btnCancel.Text = "Cancel";
+            btnAdd.MouseEnter += (s, e) => btnAdd.BackColor = Color.SeaGreen;
+            btnAdd.MouseLeave += (s, e) => btnAdd.BackColor = Color.MediumSeaGreen;
+
+            btnCancel.Text = "❌ Cancel";
+            btnCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCancel.BackColor = Color.IndianRed;
+            btnCancel.ForeColor = Color.White;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.Size = new Size(140, 45);
+            btnCancel.Location = new Point(520, 390);
+            btnCancel.Cursor = Cursors.Hand;
             btnCancel.Click += btnCancel_Click;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Anchor = AnchorStyles.None;
-            flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.BackColor = Color.Turquoise;
-            flowLayoutPanel1.Location = new Point(362, 167);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(359, 351);
-            flowLayoutPanel1.TabIndex = 10;
-            // 
-            // AddEventForm
-            // 
-            ClientSize = new Size(1112, 679);
-            Controls.Add(lblTitle);
-            Controls.Add(txtTitle);
-            Controls.Add(lblCategory);
-            Controls.Add(cboCategory);
-            Controls.Add(lblDate);
-            Controls.Add(dtpDate);
-            Controls.Add(lblDescription);
-            Controls.Add(txtDescription);
-            Controls.Add(btnAdd);
-            Controls.Add(btnCancel);
-            Controls.Add(flowLayoutPanel1);
-            Name = "AddEventForm";
-            StartPosition = FormStartPosition.CenterParent;
+            btnCancel.MouseEnter += (s, e) => btnCancel.BackColor = Color.Firebrick;
+            btnCancel.MouseLeave += (s, e) => btnCancel.BackColor = Color.IndianRed;
+
+            // ===== FORM SETTINGS =====
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(900, 550);
+            Controls.Add(pnlContent);
+            Controls.Add(pnlHeader);
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Add New Event";
+
+            pnlHeader.ResumeLayout(false);
+            pnlContent.ResumeLayout(false);
+            pnlContent.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.TextBox txtTitle;
-        private System.Windows.Forms.Label lblCategory;
-        public System.Windows.Forms.ComboBox cboCategory; // Can remain public for internal use
-        private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnCancel;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel pnlHeader;
+        private Label lblHeader;
+        private Panel pnlContent;
+        private Label lblTitle;
+        private TextBox txtTitle;
+        private Label lblCategory;
+        public ComboBox cboCategory;
+        private Label lblDate;
+        private DateTimePicker dtpDate;
+        private Label lblDescription;
+        private TextBox txtDescription;
+        private Button btnAdd;
+        private Button btnCancel;
     }
 }

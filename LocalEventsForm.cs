@@ -52,20 +52,29 @@ namespace MunicipalityApp
         {
             string category = cboCategory.SelectedItem?.ToString();
             if (category == "Any") category = null;
-
-            DateTime? sd = dtpStartDate.Checked ? dtpStartDate.Value.Date : (DateTime?)null;
-            DateTime? ed = dtpEndDate.Checked ? dtpEndDate.Value.Date : (DateTime?)null;
             string keywords = string.IsNullOrWhiteSpace(txtKeywords.Text) ? null : txtKeywords.Text.Trim();
 
-            var results = manager.Search(category, sd, ed, keywords);
+            // Search for events within selected date range
+            DateTime? startDate = dtpStartDate.Checked ? dtpStartDate.Value.Date : (DateTime?)null;
+            DateTime? endDate = dtpEndDate.Checked ? dtpEndDate.Value.Date : (DateTime?)null;
+
+            var results = manager.Search(category, startDate, endDate, keywords);
             RefreshEventsGrid(results);
 
-            // Show top 5 recommendations
+            // --- Recommendations Section ---
             lstRecommendations.Items.Clear();
-            var recs = manager.GetRecommendations(category, sd, ed, keywords, topN: 5);
+            lstRecommendations.Items.Add("⭐ Recommended for You ⭐");
+            lstRecommendations.Items.Add("--------------------------------");
+
+            var recs = manager.GetRecommendations(category, keywords, 5);
             foreach (var r in recs)
-                lstRecommendations.Items.Add($"{r.Title} ({r.Date:yyyy-MM-dd}) - {r.Category}");
+                lstRecommendations.Items.Add($"{r.Title} - {r.Category} ({r.Date:yyyy-MM-dd})");
+
+            var next = manager.PeekNextUpcoming();
+            if (next != null)
+                lstRecommendations.Items.Insert(0, $"Next Upcoming: {next.Title} ({next.Date:yyyy-MM-dd})");
         }
+
 
         private void BtnRecommendations_Click(object sender, EventArgs e)
         {

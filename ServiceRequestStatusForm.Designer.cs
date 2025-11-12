@@ -1,8 +1,23 @@
-﻿namespace MunicipalityApp
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MunicipalityApp
 {
     partial class ServiceRequestStatusForm
     {
         private System.ComponentModel.IContainer components = null;
+        private Panel pnlHeader;
+        private Label lblHeader;
+        private Panel pnlContent;
+        private DataGridView dgvRequests;
+        private TextBox txtSearch;
+        private Button btnLoad;
+        private Button btnSearch;
+        private Button btnViewPriority;
+        private Button btnGraph;
+        private Button btnBack;
+        private Label lblSearch;
 
         protected override void Dispose(bool disposing)
         {
@@ -13,120 +28,174 @@
 
         private void InitializeComponent()
         {
-            this.dgvRequests = new System.Windows.Forms.DataGridView();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnViewPriority = new System.Windows.Forms.Button();
-            this.btnGraph = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
+            pnlHeader = new Panel();
+            lblHeader = new Label();
+            pnlContent = new Panel();
 
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).BeginInit();
-            this.SuspendLayout();
+            dgvRequests = new DataGridView();
+            txtSearch = new TextBox();
+            btnLoad = new Button();
+            btnSearch = new Button();
+            btnViewPriority = new Button();
+            btnGraph = new Button();
+            btnBack = new Button();
+            lblSearch = new Label();
 
-            // 
-            // dgvRequests
-            // 
-            this.dgvRequests.AllowUserToAddRows = false;
-            this.dgvRequests.AllowUserToDeleteRows = false;
-            this.dgvRequests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvRequests.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dgvRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRequests.Location = new System.Drawing.Point(50, 100);
-            this.dgvRequests.Name = "dgvRequests";
-            this.dgvRequests.ReadOnly = true;
-            this.dgvRequests.Size = new System.Drawing.Size(850, 300);
-            this.dgvRequests.TabIndex = 0;
+            pnlHeader.SuspendLayout();
+            pnlContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRequests).BeginInit();
+            SuspendLayout();
 
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(50, 420);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(120, 30);
-            this.btnLoad.Text = "Load Requests";
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // ===== HEADER =====
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 90;
+            pnlHeader.BackColor = Color.SteelBlue;
+            pnlHeader.Controls.Add(lblHeader);
 
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(300, 420);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(120, 30);
-            this.btnSearch.Text = "Search by ID";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            lblHeader.Dock = DockStyle.Fill;
+            lblHeader.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.White;
+            lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+            lblHeader.Text = "📊 Service Request Status Tracker";
 
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(180, 424);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(100, 23);
+            // ===== CONTENT PANEL =====
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.BackColor = Color.WhiteSmoke;
+            pnlContent.Padding = new Padding(40);
 
-            // 
-            // btnViewPriority
-            // 
-            this.btnViewPriority.Location = new System.Drawing.Point(450, 420);
-            this.btnViewPriority.Name = "btnViewPriority";
-            this.btnViewPriority.Size = new System.Drawing.Size(150, 30);
-            this.btnViewPriority.Text = "View Priority Queue";
-            this.btnViewPriority.Click += new System.EventHandler(this.btnViewPriority_Click);
+            // ===== DATA GRID VIEW =====
+            dgvRequests.Location = new Point(50, 100);
+            dgvRequests.Size = new Size(840, 300);
+            dgvRequests.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgvRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRequests.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvRequests.BackgroundColor = Color.White;
+            dgvRequests.GridColor = Color.LightGray;
+            dgvRequests.BorderStyle = BorderStyle.FixedSingle;
+            dgvRequests.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle()
+            {
+                Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold),
+                BackColor = Color.AliceBlue,
+                ForeColor = Color.Black
+            };
+            dgvRequests.DefaultCellStyle = new DataGridViewCellStyle()
+            {
+                Font = new Font("Segoe UI", 10F),
+                SelectionBackColor = Color.LightSteelBlue,
+                SelectionForeColor = Color.Black
+            };
+            dgvRequests.EnableHeadersVisualStyles = false;
 
-            // 
-            // btnGraph
-            // 
-            this.btnGraph.Location = new System.Drawing.Point(620, 420);
-            this.btnGraph.Name = "btnGraph";
-            this.btnGraph.Size = new System.Drawing.Size(150, 30);
-            this.btnGraph.Text = "Graph Traversal";
-            this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
+            // ===== SEARCH LABEL =====
+            lblSearch.Text = "🔎 Search by ID:";
+            lblSearch.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(50, 420);
 
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(790, 420);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(110, 30);
-            this.btnBack.Text = "Back to Menu";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // ===== SEARCH BOX =====
+            txtSearch.Font = new Font("Segoe UI", 10F);
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSearch.Location = new Point(170, 418);
+            txtSearch.Size = new Size(150, 27);
 
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(340, 30);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(300, 25);
-            this.lblTitle.Text = "Service Request Status Tracker";
+            // ===== BUTTON STYLE BASE =====
+            Font btnFont = new Font("Segoe UI", 10.5F, FontStyle.Bold);
 
-            // 
-            // ServiceRequestStatusForm
-            // 
-            this.ClientSize = new System.Drawing.Size(960, 480);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.dgvRequests);
-            this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnViewPriority);
-            this.Controls.Add(this.btnGraph);
-            this.Controls.Add(this.btnBack);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Service Request Status";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRequests)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // Load Button
+            btnLoad.Text = "📂 Load Requests";
+            btnLoad.Font = btnFont;
+            btnLoad.BackColor = Color.DodgerBlue;
+            btnLoad.ForeColor = Color.White;
+            btnLoad.FlatStyle = FlatStyle.Flat;
+            btnLoad.FlatAppearance.BorderSize = 0;
+            btnLoad.Size = new Size(160, 40);
+            btnLoad.Location = new Point(340, 415);
+            btnLoad.Cursor = Cursors.Hand;
+            btnLoad.Click += btnLoad_Click;
+            btnLoad.MouseEnter += (s, e) => btnLoad.BackColor = Color.RoyalBlue;
+            btnLoad.MouseLeave += (s, e) => btnLoad.BackColor = Color.DodgerBlue;
+
+            // Search Button
+            btnSearch.Text = "🔍 Search";
+            btnSearch.Font = btnFont;
+            btnSearch.BackColor = Color.MediumSeaGreen;
+            btnSearch.ForeColor = Color.White;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.Size = new Size(120, 40);
+            btnSearch.Location = new Point(520, 415);
+            btnSearch.Cursor = Cursors.Hand;
+            btnSearch.Click += btnSearch_Click;
+            btnSearch.MouseEnter += (s, e) => btnSearch.BackColor = Color.SeaGreen;
+            btnSearch.MouseLeave += (s, e) => btnSearch.BackColor = Color.MediumSeaGreen;
+
+            // Priority Button
+            btnViewPriority.Text = "⚡ View Priority Queue";
+            btnViewPriority.Font = btnFont;
+            btnViewPriority.BackColor = Color.MediumSlateBlue;
+            btnViewPriority.ForeColor = Color.White;
+            btnViewPriority.FlatStyle = FlatStyle.Flat;
+            btnViewPriority.FlatAppearance.BorderSize = 0;
+            btnViewPriority.Size = new Size(200, 40);
+            btnViewPriority.Location = new Point(660, 415);
+            btnViewPriority.Cursor = Cursors.Hand;
+            btnViewPriority.Click += btnViewPriority_Click;
+            btnViewPriority.MouseEnter += (s, e) => btnViewPriority.BackColor = Color.SlateBlue;
+            btnViewPriority.MouseLeave += (s, e) => btnViewPriority.BackColor = Color.MediumSlateBlue;
+
+            // Graph Button
+            btnGraph.Text = "📈 Graph Traversal";
+            btnGraph.Font = btnFont;
+            btnGraph.BackColor = Color.Teal;
+            btnGraph.ForeColor = Color.White;
+            btnGraph.FlatStyle = FlatStyle.Flat;
+            btnGraph.FlatAppearance.BorderSize = 0;
+            btnGraph.Size = new Size(200, 40);
+            btnGraph.Location = new Point(340, 470);
+            btnGraph.Cursor = Cursors.Hand;
+            btnGraph.Click += btnGraph_Click;
+            btnGraph.MouseEnter += (s, e) => btnGraph.BackColor = Color.DarkCyan;
+            btnGraph.MouseLeave += (s, e) => btnGraph.BackColor = Color.Teal;
+
+            // Back Button
+            btnBack.Text = "↩️ Back to Menu";
+            btnBack.Font = btnFont;
+            btnBack.BackColor = Color.IndianRed;
+            btnBack.ForeColor = Color.White;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.Size = new Size(200, 40);
+            btnBack.Location = new Point(560, 470);
+            btnBack.Cursor = Cursors.Hand;
+            btnBack.Click += btnBack_Click;
+            btnBack.MouseEnter += (s, e) => btnBack.BackColor = Color.Firebrick;
+            btnBack.MouseLeave += (s, e) => btnBack.BackColor = Color.IndianRed;
+
+            // ===== ADD CONTROLS =====
+            pnlContent.Controls.Add(dgvRequests);
+            pnlContent.Controls.Add(lblSearch);
+            pnlContent.Controls.Add(txtSearch);
+            pnlContent.Controls.Add(btnLoad);
+            pnlContent.Controls.Add(btnSearch);
+            pnlContent.Controls.Add(btnViewPriority);
+            pnlContent.Controls.Add(btnGraph);
+            pnlContent.Controls.Add(btnBack);
+
+            // ===== FORM SETTINGS =====
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(960, 560);
+            Controls.Add(pnlContent);
+            Controls.Add(pnlHeader);
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Service Request Status";
+
+            pnlHeader.ResumeLayout(false);
+            pnlContent.ResumeLayout(false);
+            pnlContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRequests).EndInit();
+            ResumeLayout(false);
         }
-
-        private System.Windows.Forms.DataGridView dgvRequests;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnViewPriority;
-        private System.Windows.Forms.Button btnGraph;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnBack;
     }
 }

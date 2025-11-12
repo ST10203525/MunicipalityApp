@@ -1,32 +1,28 @@
-﻿namespace MunicipalityApp
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MunicipalityApp
 {
     partial class ReportIssuesForm
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Label lblLocation;
-        private System.Windows.Forms.TextBox txtLocation;
-        private System.Windows.Forms.Label lblCategory;
-        private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.RichTextBox rtbDescription;
-        private System.Windows.Forms.Button btnAttach;
-        private System.Windows.Forms.Label lblAttachmentStatus;
-        private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label lblStatus;
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
+            pnlHeader = new Panel();
+            lblHeader = new Label();
+            pnlContent = new Panel();
+
             lblLocation = new Label();
             txtLocation = new TextBox();
             lblCategory = new Label();
@@ -35,172 +31,170 @@
             rtbDescription = new RichTextBox();
             btnAttach = new Button();
             lblAttachmentStatus = new Label();
-            btnSubmit = new Button();
-            btnBack = new Button();
             progressBar1 = new ProgressBar();
             lblStatus = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            btnSubmit = new Button();
+            btnBack = new Button();
+
+            pnlHeader.SuspendLayout();
+            pnlContent.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblLocation
-            // 
-            lblLocation.Anchor = AnchorStyles.None;
+
+            // ===== HEADER PANEL =====
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 80;
+            pnlHeader.BackColor = Color.SteelBlue;
+            pnlHeader.Controls.Add(lblHeader);
+
+            lblHeader.Dock = DockStyle.Fill;
+            lblHeader.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeader.ForeColor = Color.White;
+            lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+            lblHeader.Text = "🛠️ Report a Municipal Issue";
+
+            // ===== CONTENT PANEL =====
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.BackColor = Color.WhiteSmoke;
+            pnlContent.Padding = new Padding(40);
+            pnlContent.Controls.AddRange(new Control[]
+            {
+                lblLocation, txtLocation,
+                lblCategory, cmbCategory,
+                lblDescription, rtbDescription,
+                btnAttach, lblAttachmentStatus,
+                progressBar1, lblStatus,
+                btnSubmit, btnBack
+            });
+
+            // ===== LABELS AND INPUTS =====
+            Font labelFont = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            Font inputFont = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+
+            // Location
+            lblLocation.Text = "📍 Location:";
+            lblLocation.Font = labelFont;
             lblLocation.AutoSize = true;
-            lblLocation.Location = new Point(163, 101);
-            lblLocation.Name = "lblLocation";
-            lblLocation.Size = new Size(69, 20);
-            lblLocation.TabIndex = 0;
-            lblLocation.Text = "Location:";
-            // 
-            // txtLocation
-            // 
-            txtLocation.Anchor = AnchorStyles.None;
-            txtLocation.Location = new Point(253, 98);
-            txtLocation.Name = "txtLocation";
-            txtLocation.Size = new Size(414, 27);
-            txtLocation.TabIndex = 1;
-            // 
-            // lblCategory
-            // 
-            lblCategory.Anchor = AnchorStyles.None;
+            lblLocation.Location = new Point(150, 70);
+
+            txtLocation.Font = inputFont;
+            txtLocation.Location = new Point(280, 68);
+            txtLocation.Size = new Size(450, 27);
+            txtLocation.BorderStyle = BorderStyle.FixedSingle;
+
+            // Category
+            lblCategory.Text = "📂 Category:";
+            lblCategory.Font = labelFont;
             lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(163, 141);
-            lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(72, 20);
-            lblCategory.TabIndex = 2;
-            lblCategory.Text = "Category:";
-            // 
-            // cmbCategory
-            // 
-            cmbCategory.Anchor = AnchorStyles.None;
+            lblCategory.Location = new Point(150, 120);
+
+            cmbCategory.Font = inputFont;
+            cmbCategory.Location = new Point(280, 118);
+            cmbCategory.Size = new Size(250, 28);
             cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCategory.FormattingEnabled = true;
-            cmbCategory.Items.AddRange(new object[] { "Sanitation", "Roads", "Utilities" });
-            cmbCategory.Location = new Point(246, 133);
-            cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(429, 28);
-            cmbCategory.TabIndex = 3;
-            // 
-            // lblDescription
-            // 
-            lblDescription.Anchor = AnchorStyles.None;
+            cmbCategory.Items.AddRange(new object[] { "Sanitation", "Roads", "Utilities", "Public Safety", "Other" });
+
+            // Description
+            lblDescription.Text = "📝 Description:";
+            lblDescription.Font = labelFont;
             lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(163, 181);
-            lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(88, 20);
-            lblDescription.TabIndex = 4;
-            lblDescription.Text = "Description:";
-            // 
-            // rtbDescription
-            // 
-            rtbDescription.Anchor = AnchorStyles.None;
-            rtbDescription.Location = new Point(249, 177);
-            rtbDescription.Name = "rtbDescription";
-            rtbDescription.Size = new Size(423, 93);
-            rtbDescription.TabIndex = 5;
-            rtbDescription.Text = "";
-            // 
-            // btnAttach
-            // 
-            btnAttach.Anchor = AnchorStyles.None;
-            btnAttach.AutoSize = true;
-            btnAttach.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAttach.Location = new Point(255, 291);
-            btnAttach.Name = "btnAttach";
-            btnAttach.Size = new Size(89, 30);
-            btnAttach.TabIndex = 6;
-            btnAttach.Text = "Attach File";
-            btnAttach.UseVisualStyleBackColor = true;
+            lblDescription.Location = new Point(150, 170);
+
+            rtbDescription.Font = inputFont;
+            rtbDescription.Location = new Point(280, 168);
+            rtbDescription.Size = new Size(450, 120);
+            rtbDescription.BorderStyle = BorderStyle.FixedSingle;
+
+            // Attachment
+            btnAttach.Text = "📎 Attach File";
+            btnAttach.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            btnAttach.BackColor = Color.DodgerBlue;
+            btnAttach.ForeColor = Color.White;
+            btnAttach.FlatStyle = FlatStyle.Flat;
+            btnAttach.FlatAppearance.BorderSize = 0;
+            btnAttach.Size = new Size(130, 35);
+            btnAttach.Location = new Point(280, 305);
+            btnAttach.Cursor = Cursors.Hand;
             btnAttach.Click += btnAttach_Click;
-            // 
-            // lblAttachmentStatus
-            // 
-            lblAttachmentStatus.Anchor = AnchorStyles.None;
+            btnAttach.MouseEnter += (s, e) => btnAttach.BackColor = Color.RoyalBlue;
+            btnAttach.MouseLeave += (s, e) => btnAttach.BackColor = Color.DodgerBlue;
+
+            lblAttachmentStatus.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            lblAttachmentStatus.ForeColor = Color.DimGray;
             lblAttachmentStatus.AutoSize = true;
-            lblAttachmentStatus.Location = new Point(381, 292);
-            lblAttachmentStatus.Name = "lblAttachmentStatus";
-            lblAttachmentStatus.Size = new Size(116, 20);
-            lblAttachmentStatus.TabIndex = 7;
+            lblAttachmentStatus.Location = new Point(430, 312);
             lblAttachmentStatus.Text = "No file attached";
-            // 
-            // btnSubmit
-            // 
-            btnSubmit.Anchor = AnchorStyles.None;
-            btnSubmit.AutoSize = true;
-            btnSubmit.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSubmit.Location = new Point(255, 488);
-            btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(66, 30);
-            btnSubmit.TabIndex = 8;
-            btnSubmit.Text = "Submit";
-            btnSubmit.UseVisualStyleBackColor = true;
-            btnSubmit.Click += btnSubmit_Click;
-            // 
-            // btnBack
-            // 
-            btnBack.Anchor = AnchorStyles.None;
-            btnBack.AutoSize = true;
-            btnBack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnBack.Location = new Point(558, 488);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(109, 30);
-            btnBack.TabIndex = 9;
-            btnBack.Text = "Back to Menu";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
-            // progressBar1
-            // 
-            progressBar1.Anchor = AnchorStyles.None;
-            progressBar1.Location = new Point(253, 458);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(414, 15);
-            progressBar1.TabIndex = 10;
-            // 
-            // lblStatus
-            // 
-            lblStatus.Anchor = AnchorStyles.None;
+
+            // Progress and status
+            lblStatus.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            lblStatus.ForeColor = Color.DimGray;
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(255, 419);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(119, 20);
-            lblStatus.TabIndex = 11;
-            lblStatus.Text = "Ready to Submit";
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Anchor = AnchorStyles.None;
-            flowLayoutPanel1.BackColor = Color.PowderBlue;
-            flowLayoutPanel1.Location = new Point(133, 73);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(614, 457);
-            flowLayoutPanel1.TabIndex = 12;
-            // 
-            // ReportIssuesForm
-            // 
-            BackColor = Color.SkyBlue;
-            ClientSize = new Size(830, 605);
-            Controls.Add(lblStatus);
-            Controls.Add(progressBar1);
-            Controls.Add(btnBack);
-            Controls.Add(btnSubmit);
-            Controls.Add(lblAttachmentStatus);
-            Controls.Add(btnAttach);
-            Controls.Add(rtbDescription);
-            Controls.Add(lblDescription);
-            Controls.Add(cmbCategory);
-            Controls.Add(lblCategory);
-            Controls.Add(txtLocation);
-            Controls.Add(lblLocation);
-            Controls.Add(flowLayoutPanel1);
-            Name = "ReportIssuesForm";
+            lblStatus.Location = new Point(280, 355);
+            lblStatus.Text = "Ready to submit your report.";
+
+            progressBar1.Location = new Point(280, 380);
+            progressBar1.Size = new Size(450, 15);
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            progressBar1.ForeColor = Color.SteelBlue;
+
+            // ===== BUTTONS =====
+            btnSubmit.Text = "✅ Submit Report";
+            btnSubmit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnSubmit.BackColor = Color.MediumSeaGreen;
+            btnSubmit.ForeColor = Color.White;
+            btnSubmit.FlatStyle = FlatStyle.Flat;
+            btnSubmit.FlatAppearance.BorderSize = 0;
+            btnSubmit.Size = new Size(180, 45);
+            btnSubmit.Location = new Point(280, 420);
+            btnSubmit.Cursor = Cursors.Hand;
+            btnSubmit.Click += btnSubmit_Click;
+            btnSubmit.MouseEnter += (s, e) => btnSubmit.BackColor = Color.SeaGreen;
+            btnSubmit.MouseLeave += (s, e) => btnSubmit.BackColor = Color.MediumSeaGreen;
+
+            btnBack.Text = "↩️ Back to Menu";
+            btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnBack.BackColor = Color.IndianRed;
+            btnBack.ForeColor = Color.White;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.Size = new Size(180, 45);
+            btnBack.Location = new Point(470, 420);
+            btnBack.Cursor = Cursors.Hand;
+            btnBack.Click += btnBack_Click;
+            btnBack.MouseEnter += (s, e) => btnBack.BackColor = Color.Firebrick;
+            btnBack.MouseLeave += (s, e) => btnBack.BackColor = Color.IndianRed;
+
+            // ===== FORM SETTINGS =====
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(900, 550);
+            Controls.Add(pnlContent);
+            Controls.Add(pnlHeader);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Report an Issue";
+
+            pnlHeader.ResumeLayout(false);
+            pnlContent.ResumeLayout(false);
+            pnlContent.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
-
-
         }
-        private FlowLayoutPanel flowLayoutPanel1;
+
+        #endregion
+
+        private Panel pnlHeader;
+        private Label lblHeader;
+        private Panel pnlContent;
+        private Label lblLocation;
+        private TextBox txtLocation;
+        private Label lblCategory;
+        private ComboBox cmbCategory;
+        private Label lblDescription;
+        private RichTextBox rtbDescription;
+        private Button btnAttach;
+        private Label lblAttachmentStatus;
+        private ProgressBar progressBar1;
+        private Label lblStatus;
+        private Button btnSubmit;
+        private Button btnBack;
     }
 }
