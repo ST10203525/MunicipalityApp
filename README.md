@@ -9,8 +9,8 @@ Main Menu
 
 Provides three options:
 Report Issues – implemented.
-Local Events & Announcements – disabled for now.
-Service Request Status – disabled for now.
+Local Events & Announcements – implemented in part 2
+Service Request Status – implemented in part 3
 Optional button: View Reports – for municipal staff to view all submitted issues.
 
 Report Issues Form
@@ -39,6 +39,8 @@ MunicipalityApp/
 ├─ MainMenuForm.Designer.cs
 ├─ ReportIssuesForm.cs
 ├─ ReportIssuesForm.Designer.cs
+├─ ServiceRequestStatusForm.cs 
+├─ ServiceRequestStatus.Designer.cs
 ├─ ViewReportsForm.cs
 ├─ ViewReportsForm.Designer.cs
 └─ Program.cs
@@ -108,6 +110,164 @@ Open attachments directly from the grid.
 Integrate with a database (SQL Server) for scalable persistence.
 Add user authentication for municipal staff and residents.
 
-## Conclusion
 
-This project provides a robust foundation for citizen engagement with municipal services. It demonstrates clean architecture with Models, Data Repository, and Windows Forms UI, making it easy to maintain, extend, and scale.
+# Municipal Services Application — Task 3  
+**Module:** PROG7312
+**Language:** C# (.NET Framework, Windows Forms)  
+**Developer:** Kiyashan Nadasen  
+
+---
+
+## Overview  
+The **Municipal Services Application** provides residents with an interactive platform to engage with their municipality. Users can:  
+1. **Report Issues** (Task 1)  
+2. **View Local Events and Announcements** (Task 2)  
+3. **Track Service Request Status** (Task 3 — This task)  
+
+This phase focuses on **data structure integration** to manage and display service request information efficiently using **Binary Trees**, **Heaps**, and **Graphs**.  
+
+---
+
+##  How to Compile and Run  
+
+1. Open the project in **Visual Studio 2022 or newer**.  
+2. Ensure the startup form is set to **MainMenuForm**.  
+3. Press **F5** or click **Start** to run the application.  
+4. On the main menu, select **“Service Request Status”**.  
+
+---
+
+##  Features  
+
+### Service Request Status Form  
+The form allows users to:  
+- **Load** sample service requests.  
+- **Search** for a service request using its **unique ID** (Binary Search Tree).  
+- **View priority order** of requests (Min Heap).  
+- **Visualize request relationships** and generate a **Minimum Spanning Tree (MST)** (Graph).  
+- **Filter and sort** the last searched ID to appear **on top** for user convenience.  
+
+---
+
+## Data Structures Implemented  
+
+###  1. Binary Search Tree (BST)
+**Purpose:**  
+Used to store and search for service requests efficiently based on their **Request ID**.  
+
+**Implementation Details:**  
+- Each node stores a `ServiceRequest` object.  
+- Searching is **O(log n)** for balanced data.  
+- The user’s last searched ID is moved to the top of the DataGridView using the BST search result.  
+
+**Example:**  
+```csharp
+BinarySearchTree bst = new BinarySearchTree();
+bst.Insert(new ServiceRequest("REQ001", "Pothole Repair", "Pending", 2));
+var result = bst.Search("REQ001");
+```
+If found, the request is highlighted and displayed first.
+
+---
+
+###  2. Min Heap (Priority Queue)
+**Purpose:**  
+Manages service requests by **priority** — the lowest number has the highest urgency.  
+
+**Implementation Details:**  
+- Requests are inserted into a `MinHeap`.  
+- The heap organizes data automatically, allowing quick extraction of the **highest-priority** request.  
+
+**Example:**  
+```csharp
+MinHeap heap = new MinHeap();
+heap.Insert(new ServiceRequest("REQ003", "Water Leak", "Resolved", 1));
+heap.ExtractMin(); // Returns the most urgent request
+```
+
+---
+
+### 3. Graph & Minimum Spanning Tree (MST)
+**Purpose:**  
+Represents relationships between requests (e.g., dependencies or route connections) and computes the **most efficient way** to manage or process them.  
+
+**Implementation Details:**  
+- Graph is represented with an **adjacency list**.  
+- **Breadth-First Search (BFS)** traverses through all connected requests.  
+- **Minimum Spanning Tree (MST)** finds the minimal connection paths using a variation of **Kruskal’s Algorithm**.  
+
+**Example:**  
+```csharp
+Graph g = new Graph();
+g.AddEdge("REQ001", "REQ002", 3);
+var mst = g.MinimumSpanningTree();
+```
+This helps optimize relationships and dependencies between service requests.
+
+---
+
+## 🧠 Efficiency Contributions  
+
+| Data Structure | Functionality | Benefit |
+|----------------|----------------|----------|
+| **Binary Search Tree** | Search & sort requests by ID | Fast lookup (O(log n)) |
+| **Min Heap** | Prioritize service requests | Efficient extraction of highest priority |
+| **Graph & MST** | Relationship mapping | Visualizes connections & minimizes total link cost |
+
+---
+
+## 🪄 User Flow  
+
+1. **Launch the Application**  
+   The main menu displays three options.  
+2. **Select "Service Request Status"**  
+   Opens a detailed form for viewing and managing requests.  
+3. **Click “Load Sample Requests”**  
+   Loads test data into a grid.  
+4. **Search for a Request ID**  
+   Displays details and filters the matching ID to the top.  
+5. **View Priority Order**  
+   Displays all requests sorted by urgency (Heap structure).  
+6. **Graph Visualization**  
+   Shows request traversal and MST information.  
+7. **Return to Main Menu**  
+   Click **Back** to navigate home.
+
+---
+
+## 🧾 Example Output  
+
+**After Loading Data:**  
+| Request ID | Description | Status | Priority |
+|-------------|-------------|---------|-----------|
+| REQ001 | Pothole Repair | Pending | 2 |
+| REQ002 | Streetlight Fix | In Progress | 3 |
+| REQ003 | Water Leak | Resolved | 1 |
+
+**After Searching `REQ003`:**  
+ “Water Leak” request moves to the top of the list.
+
+---
+
+##  Files Included  
+
+| File | Description |
+|------|-------------|
+| `MainMenuForm.cs` | Main navigation screen |
+| `ServiceRequestStatusForm.cs` | Core form handling BST, Heap, and Graph logic |
+| `ServiceRequestStatusForm.Designer.cs` | UI layout and component initialization |
+| `Program.cs` | Entry point of the application |
+
+---
+
+##  Future Enhancements  
+- Connect data to a **database** for persistent storage.  
+- Add **real-time updates** for request statuses.  
+- Implement **Red-Black Trees** for self-balancing performance.  
+- Display **graph visualization** on the UI instead of message boxes.
+
+---
+
+##  Conclusion  
+This implementation demonstrates the power of **data structures** in optimizing real-world systems. The integration of **trees**, **heaps**, and **graphs** provides structure, performance, and reliability to the Service Request Status feature, transforming municipal data into an efficient and insightful management system.
+
