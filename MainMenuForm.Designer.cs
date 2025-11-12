@@ -1,8 +1,13 @@
-﻿namespace MunicipalityApp
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace MunicipalityApp
 {
     partial class MainMenuForm
     {
         private System.ComponentModel.IContainer components = null;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -61,6 +66,7 @@
             btnServiceStatus.TabIndex = 2;
             btnServiceStatus.Text = "Service Request Status";
             btnServiceStatus.UseVisualStyleBackColor = true;
+            btnServiceStatus.Click += btnServiceStatus_Click; // ✅ Added
             // 
             // btnReportIssues
             // 
@@ -78,17 +84,17 @@
             // tableLayout
             // 
             tableLayout.ColumnCount = 1;
-            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayout.Controls.Add(btnReportIssues, 0, 0);
+            tableLayout.Controls.Add(btnLocalEvents, 0, 1);
             tableLayout.Controls.Add(btnServiceStatus, 0, 2);
             tableLayout.Controls.Add(btnViewReports, 0, 3);
-            tableLayout.Controls.Add(btnLocalEvents, 0, 1);
             tableLayout.Dock = DockStyle.Fill;
             tableLayout.Location = new Point(0, 0);
             tableLayout.Name = "tableLayout";
             tableLayout.RowCount = 4;
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 26.4036427F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 23.36874F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayout.Size = new Size(984, 659);
@@ -96,6 +102,8 @@
             // 
             // MainMenuForm
             // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(984, 659);
             Controls.Add(tableLayout);
@@ -107,9 +115,8 @@
             tableLayout.ResumeLayout(false);
             tableLayout.PerformLayout();
             ResumeLayout(false);
-
-
         }
+
         private Button btnLocalEvents;
         private Button btnViewReports;
         private Button btnServiceStatus;
